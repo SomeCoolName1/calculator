@@ -1,0 +1,86 @@
+body {
+  background-color: rgb(243, 227, 203);
+  display: flex;
+  margin: 0px auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.calculatorCase {
+  margin: 100px;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-color: solid black;
+  border: 10px;
+  width: 400px;
+  border-radius: 15px;
+  overflow: hidden;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.screenContainer {
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.screenOutput {
+  padding: 10px;
+  background-color: lightcyan;
+  border-radius: 10px;
+}
+
+.screenOutput:hover:after {
+  background-color: black;
+}
+
+.numberScreen2,
+.numberScreen1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.buttonWrapper {
+  padding: 10px;
+  height: 400px;
+
+  border-radius: 5px;
+}
+
+.buttonContainer {
+  height: 100%;
+  width: 100%;
+  grid-gap: 10px;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.span {
+  grid-column: span 2;
+}
+
+.button {
+  font-size: 24px;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: rgb(230, 230, 230);
+}
+
+.button:hover {
+  background-color: lightgrey;
+}
+
+.AC {
+  background-color: rgb(212, 212, 147);
+}
+
+.BACK {
+  background-color: rgb(255, 196, 196);
+}
