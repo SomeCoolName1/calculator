@@ -7,7 +7,7 @@ var bottomScreen = document.getElementById("numberScreen1");
 var topScreen = document.getElementById("numberScreen2"); //top one
 var operatorOnScreen = document.getElementById("operatorScreen");
 
-function number(e) {
+function sewer(e) {
   if (results !== "" && operationMode === null) {
     clearAll();
   }
@@ -20,7 +20,7 @@ function number(e) {
 }
 function appendPoint() {
   if (numberLine === "") {
-    number(0);
+    sewer(0);
   } else if (numberLine.includes(".")) return;
   else {
     numberLine += ".";
