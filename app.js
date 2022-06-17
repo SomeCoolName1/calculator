@@ -1,66 +1,100 @@
-var mode = "";
 var results = "";
 var numberLine = "";
 var firstoperand = "";
 var secondoperand = "";
 var operationMode = null;
-var numberOnScreen1 = document.getElementById("numberScreen1");
-var numberOnScreen2 = document.getElementById("numberScreen2");
+var bottomScreen = document.getElementById("numberScreen1");
+var topScreen = document.getElementById("numberScreen2"); //top one
+var operatorOnScreen = document.getElementById("operatorScreen");
 
 function number(e) {
+  if (results !== "" && operationMode === null) {
+    clearAll();
+  }
   if (numberLine.length >= 9) {
     console.log("Too many numbers");
-  } else if (numberLine === "" && e === 0) {
   } else {
     numberLine = numberLine + parseInt(e); //When pressing a number, parseInt concatenates it to variable numberLine
-    numberOnScreen1.innerHTML = numberLine; //Updates screen number
+    bottomScreen.innerHTML = numberLine; //Updates screen number
+  }
+}
+function appendPoint() {
+  if (numberLine === "") {
+    number(0);
+  } else if (numberLine.includes(".")) return;
+  else {
+    numberLine += ".";
+    bottomScreen.innerHTML = numberLine;
   }
 }
 
 function changeMode(e) {
-  if (numberLine !== "") {
+  if (topScreen !== "") {
     switch (e) {
       case "addition":
-        operationMode = "add";
         operationCheck();
-
+        operationMode = "add";
+        specialCase();
+        operatorOnScreen.innerHTML = "+";
         break;
       case "subtraction":
-        operationMode = "subtract";
         operationCheck();
+        operationMode = "subtract";
+        specialCase();
+        operatorOnScreen.innerHTML = "-";
         break;
       case "division":
-        operationMode = "divide";
         operationCheck();
-
+        operationMode = "divide";
+        specialCase();
+        operatorOnScreen.innerHTML = "÷";
         break;
       case "multiplication":
-        operationMode = "multiply";
         operationCheck();
-
-        break;
-      case "=":
-        if (operationMode !== null) {
-          secondoperand = numberLine;
-          evaluate(firstoperand, secondoperand);
-        } else {
-          console.log("fk you");
-        }
-
+        operationMode = "multiply";
+        specialCase();
+        operatorOnScreen.innerHTML = "x";
         break;
     }
-  } else console.log("Please input numbers first");
+  }
 }
 
 function operationCheck() {
   if (firstoperand === "") {
     firstoperand = numberLine;
-    numberOnScreen2.innerHTML = firstoperand; //Updates second screen number to be listed above
-    numberLine = ""; // Resets numberLine
-  } else {
+    bottomScreen.innerHTML = ""; //Clears the first inputted number
+    topScreen.innerHTML = firstoperand; //Puts the inputted number to on top of screen
+    numberLine = ""; //Resets numberLine so another number can be put in
+  } else if (firstoperand !== "" && numberLine !== "") {
+    //If there's already a first operand and a second number is inputted, calculate.
+    equal();
+  } else return; //When there's no second number inputted, then just add/update the operator
+}
+
+function equal() {
+  if (operationMode !== null && secondoperand === "" && numberLine !== "") {
     secondoperand = numberLine;
     evaluate(firstoperand, secondoperand);
+  } else operationMode === null;
+  return;
+}
+
+function specialCase() {
+  if (results !== "") {
+    topScreen.innerHTML = results;
+    firstoperand = results;
+    bottomScreen.innerHTML = "";
   }
+}
+
+function readyNext() {
+  topScreen.innerHTML +=
+    " " + operatorOnScreen.innerHTML + " " + secondoperand + " = ";
+  bottomScreen.innerHTML = results;
+  operatorOnScreen.innerHTML = "";
+  numberLine = "";
+  secondoperand = "";
+  operationMode = null;
 }
 
 function evaluate(a, b) {
@@ -70,46 +104,26 @@ function evaluate(a, b) {
   switch (operationMode) {
     case "add":
       results = a + b;
-      firstoperand = results;
-      numberOnScreen2.innerHTML = firstoperand;
-      numberOnScreen1.innerHTML = "";
-
-      operationMode = null;
-      numberLine = "";
-      secondoperand = "";
+      readyNext();
       break;
 
     case "subtract":
       results = a - b;
-      firstoperand = results;
-      numberOnScreen2.innerHTML = firstoperand;
-      numberOnScreen1.innerHTML = "";
-
-      operationMode = null;
-      numberLine = "";
-      secondoperand = "";
+      readyNext();
       break;
 
     case "divide":
-      results = a / b;
-      firstoperand = results;
-      numberOnScreen2.innerHTML = firstoperand;
-      numberOnScreen1.innerHTML = "";
-
-      operationMode = null;
-      numberLine = "";
-      secondoperand = "";
+      if (b === 0) {
+        alert("go fk yourself");
+      } else {
+        results = a / b;
+        readyNext();
+      }
       break;
 
     case "multiply":
       results = a * b;
-      firstoperand = results;
-      numberOnScreen2.innerHTML = firstoperand;
-      numberOnScreen1.innerHTML = "";
-
-      operationMode = null;
-      numberLine = "";
-      secondoperand = "";
+      readyNext();
       break;
   }
 }
@@ -119,11 +133,13 @@ function clearAll() {
   numberLine = "";
   secondoperand = "";
   firstoperand = "";
-  numberOnScreen2.innerHTML = "";
-  numberOnScreen1.innerHTML = "";
+  topScreen.innerHTML = "";
+  bottomScreen.innerHTML = "";
+  operatorOnScreen.innerHTML = "";
+  results = "";
 }
 
 function backSpace() {
   numberLine = numberLine.slice(0, -1);
-  numberOnScreen1.innerHTML = numberLine;
+  bottomScreen.innerHTML = numberLine;
 }

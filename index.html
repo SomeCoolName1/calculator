@@ -12,17 +12,18 @@
 
 <body>
     <h1>Calculator</h1>
+    <h3>Your Own Personal Asian</h3>
     <div class="calculatorCase">
         <div class="screenContainer">
             <div class="screenOutput">
-                <p>Number: <span id="numberScreen2"></span></p>
-                <p>Number: <span id="numberScreen1"></span></p>
+                <p> <span id="numberScreen2"></span> <span id="operatorScreen"></span></p>
+                <p> <span id="numberScreen1"></span></p>
             </div>
         </div>
         <div class="buttonWrapper">
             <div class="buttonContainer">
-                <button class="button span AC" onclick="clearAll()">AC</button>
-                <button class="button span BACK" onclick="backSpace()">Backspace</button>
+                <button class="button span AC" onclick="clearAll()">CLEAR</button>
+                <button class="button span BACK" onclick="backSpace()">DELETE</button>
                 <button class="button" onclick="number(7)">7</button>
                 <button class="button" onclick="number(8)">8</button>
                 <button class="button" onclick="number(9)">9</button>
@@ -36,8 +37,8 @@
                 <button class="button" onclick="number(3)">3</button>
                 <button class="button" onclick="changeMode('multiplication')">x</button>
                 <button class="button" onclick="number(0)">0</button>
-                <button class="button">.</button>
-                <button class="button" onclick="changeMode('=')">=</button>
+                <button class="button" onclick="appendPoint()">.</button>
+                <button class="button" onclick="equal()">=</button>
                 <button class="button" onclick="changeMode('division')">÷</button>
 
 
@@ -46,6 +47,9 @@
         </div>
 
 
+    </div>
+    <div class="footer">
+        Webpage by: Tuan Anh Pham
     </div>
     <script src='app.js'></script>
 </body>
