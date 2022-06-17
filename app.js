@@ -6,8 +6,38 @@ var operationMode = null;
 var bottomScreen = document.getElementById("numberScreen1");
 var topScreen = document.getElementById("numberScreen2"); //top one
 var operatorOnScreen = document.getElementById("operatorScreen");
+const numButtons = document.querySelectorAll("[data-number]");
+const opButtons = document.querySelectorAll("[data-operator]");
+const dotButton = document.querySelectorAll("[data-dot]");
+const equalButton = document.querySelectorAll("[equal]");
+const clearButton = document.querySelectorAll("[clear]");
+const delButton = document.querySelectorAll("[backspace]");
+
+numButtons.forEach((button) =>
+  button.addEventListener("click", () => sewer(button.textContent))
+);
+
+opButtons.forEach((button) =>
+  button.addEventListener("click", () => changeMode(button.textContent))
+);
+
+dotButton.forEach((button) =>
+  button.addEventListener("click", () => appendPoint())
+);
+
+equalButton.forEach((button) =>
+  button.addEventListener("click", () => equal())
+);
+
+clearButton.forEach((button) =>
+  button.addEventListener("click", () => clearAll())
+);
+delButton.forEach((button) =>
+  button.addEventListener("click", () => backSpace())
+);
 
 function sewer(e) {
+  console.log(e);
   if (results !== "" && operationMode === null) {
     clearAll();
   }
@@ -31,25 +61,25 @@ function appendPoint() {
 function changeMode(e) {
   if (topScreen !== "") {
     switch (e) {
-      case "addition":
+      case "+":
         operationCheck();
         operationMode = "add";
         specialCase();
         operatorOnScreen.innerHTML = "+";
         break;
-      case "subtraction":
+      case "-":
         operationCheck();
         operationMode = "subtract";
         specialCase();
         operatorOnScreen.innerHTML = "-";
         break;
-      case "division":
+      case "÷":
         operationCheck();
         operationMode = "divide";
         specialCase();
         operatorOnScreen.innerHTML = "÷";
         break;
-      case "multiplication":
+      case "x":
         operationCheck();
         operationMode = "multiply";
         specialCase();

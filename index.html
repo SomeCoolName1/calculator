@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     <title>Calculator</title>
     <link rel="stylesheet" href="Style/style.css">
-        
 </head>
 
 <body>
@@ -23,24 +22,24 @@
         </div>
         <div class="buttonWrapper">
             <div class="buttonContainer">
-                <button class="button span AC" onclick="clearAll()">CLEAR</button>
-                <button class="button span BACK" onclick="backSpace()">DELETE</button>
-                <button class="button" onclick="sewer(7)">7</button>
-                <button class="button" onclick="sewer(8)">8</button>
-                <button class="button" onclick="sewer(9)">9</button>
-                <button class="button" onclick="changeMode('addition')">+</button>
-                <button class="button" onclick="sewer(4)">4</button>
-                <button class="button" onclick="sewer(5)">5</button>
-                <button class="button" onclick="sewer(6)">6</button>
-                <button class="button" onclick="changeMode('subtraction')">-</button>
-                <button class="button" onclick="sewer(1)">1</button>
-                <button class="button" onclick="sewer(2)">2</button>
-                <button class="button" onclick="sewer(3)">3</button>
-                <button class="button" onclick="changeMode('multiplication')">x</button>
-                <button class="button" onclick="sewer(0)">0</button>
-                <button class="button" onclick="appendPoint()">.</button>
-                <button class="button" onclick="equal()">=</button>
-                <button class="button" onclick="changeMode('division')">÷</button>
+                <button class="button span AC" clear>CLEAR</button>
+                <button class="button span BACK" backspace>DELETE</button>
+                <button class="button" data-number>7</button>
+                <button class="button" data-number>8</button>
+                <button class="button" data-number>9</button>
+                <button class="button" data-operator>+</button>
+                <button class="button" data-number>4</button>
+                <button class="button" data-number>5</button>
+                <button class="button" data-number>6</button>
+                <button class="button" data-operator>-</button>
+                <button class="button" data-number>1</button>
+                <button class="button" data-number>2</button>
+                <button class="button" data-number>3</button>
+                <button class="button" data-operator>x</button>
+                <button class="button" data-number>0</button>
+                <button class="button" data-dot>.</button>
+                <button class="button" equal>=</button>
+                <button class="button" data-operator>÷</button>
 
 
 
@@ -50,9 +49,9 @@
 
     </div>
     <div class="footer">
-        Webpage by: Tuan Anh Pham
+        Webpage by Tuan Anh Pham
     </div>
-<script src='app.js' defer></script>
+    <script src='app.js' defer></script>
 </body>
 
 
