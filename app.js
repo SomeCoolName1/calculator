@@ -145,7 +145,7 @@ function evaluate(a, b) {
     case "divide":
       if (b === 0) {
         clearAll();
-        alert("go fk yourself");
+        alert("I see you dividing by 0");
       } else {
         results = a / b;
         readyNext();
